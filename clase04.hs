@@ -57,7 +57,8 @@ multiplo3 2 = False
 multiplo3 n = multiplo3 (n - 3)
 
 multiplo n 0 = True
-multiplo n m | m >= n = multiplo n (m - n)
+multiplo n m | m < 0 = multiplo n (abs m)
+             | m >= n = multiplo n (m - n)
              | otherwise = False
 
 sumaImpares n = psum 1 n (\i -> 2 * i - 1)

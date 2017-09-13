@@ -9,5 +9,10 @@ fact n = fact' n 1
 fact' 0 acc = acc
 fact' n acc = fact' (n - 1) (acc * n)
 
-parteEntera n | n >= 0 && n < 1 = 0
-              | otherwise = parteEntera (n - 1) + 1
+-- Si n pertenece al rango [a; b)
+enRango n a b = n >= a && n < b
+
+parteEntera n = parteEntera' n 0
+parteEntera' 0 acc = acc
+parteEntera' n acc | enRango n 0 1 = acc
+                   | otherwise = parteEntera' (n - 1) (acc + 1)

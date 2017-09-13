@@ -18,3 +18,7 @@ parteEntera n = parteEntera' n 0
 parteEntera' n acc | enRango n 0 1 = acc
                    | n > 1 = parteEntera' (n - 1) (acc + 1)
                    | n < 0 = parteEntera' (n + 1) (acc - 1)
+
+division a d = division' a d (0, 0)
+division' a d (cociente, 0) | a < d = (cociente, a)
+                            | otherwise = division' (a - d) d (cociente + 1, 0)

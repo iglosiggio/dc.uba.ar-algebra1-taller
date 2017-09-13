@@ -13,6 +13,6 @@ fact' n acc = fact' (n - 1) (acc * n)
 enRango n a b = n >= a && n < b
 
 parteEntera n = parteEntera' n 0
-parteEntera' 0 acc = acc
 parteEntera' n acc | enRango n 0 1 = acc
-                   | otherwise = parteEntera' (n - 1) (acc + 1)
+                   | n > 1 = parteEntera' (n - 1) (acc + 1)
+                   | n < 0 = parteEntera' (n + 1) (acc - 1)

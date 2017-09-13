@@ -8,3 +8,6 @@ fact 0 = 1
 fact n = fact' n 1
 fact' 0 acc = acc
 fact' n acc = fact' (n - 1) (acc * n)
+
+parteEntera n | n >= 0 && n < 1 = 0
+              | otherwise = parteEntera (n - 1) + 1

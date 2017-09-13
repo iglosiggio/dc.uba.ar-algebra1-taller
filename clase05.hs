@@ -20,5 +20,16 @@ parteEntera' n acc | enRango n 0 1 = acc
                    | n < 0 = parteEntera' (n + 1) (acc - 1)
 
 division a d = division' a d (0, 0)
-division' a d (cociente, 0) | a < d = (cociente, a)
-                            | otherwise = division' (a - d) d (cociente + 1, 0)
+division' a d (cociente, 0) | a > (-d) && a < d = (cociente, a) -- a en rango (-d, d)
+                            | a >= d = division' (a - d) d (cociente + 1, 0)
+                            | a <  d = division' (a + d) d (cociente - 1, 0)
+
+sumaDivisores :: Integer -> Integer
+sumaDivisores n = sumaDivisoresHasta n n
+
+sumaDivisoresHasta :: Integer -> Integer -> Integer
+sumaDivisoresHasta 0 k = 0
+sumaDivisoresHasta n k | mod k n == 0 = sumaDivisoresHasta (n - 1) k + n
+                       | otherwise    = sumaDivisoresHasta (n - 1) k
+
+esPrimo n = sumaDivisores n == n + 1

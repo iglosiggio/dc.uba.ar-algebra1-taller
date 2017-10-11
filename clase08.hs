@@ -56,7 +56,7 @@ elementosUnicos (x:xs) | elem x xs = elementosUnicos xs
 --   https://gist.github.com/finiteautomata/db7210851a8a2a76237fdfa914a06afa
 
 variaciones :: Set Integer -> Integer -> Set [Integer]
-variaciones _ 0  = []
+variaciones _ 0  = [[]]
 variaciones [] _ = []
 variaciones (x:xs) 1 = [x] : variaciones xs 1
 variaciones (x:xs) n = elementosUnicos 

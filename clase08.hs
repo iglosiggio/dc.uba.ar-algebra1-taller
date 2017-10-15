@@ -63,3 +63,22 @@ variaciones (x:xs) n = elementosUnicos
                          (insercionesPosiblesEnListas x (variaciones (x:xs) (n - 1))
                           ++ variaciones xs n)
 
+insertarEn :: [Integer] -> Integer -> Integer -> [Integer]
+insertarEn lista  n 1   = n : lista
+insertarEn (x:xs) n pos = x : (insertarEn xs n (pos - 1))
+
+permutaciones :: Integer -> [[Integer]]
+permutaciones 0 = [[]]
+permutaciones n = insercionesPosiblesEnListas n (permutaciones (n - 1))
+
+insertarCaja :: [Integer] -> [[[Integer]]] -> [[[Integer]]]
+insertarCaja caja [] = []
+insertarCaja caja (solucion:soluciones) = (caja : solucion) : (insertarCaja caja soluciones)
+
+ponerUnaBolita :: Integer -> [[Integer]] -> [[[Integer]]]
+ponerUnaBolita bolita [] = []
+ponerUnaBolita bolita (caja:cajas) = ((bolita : caja) : cajas) : (insertarCaja caja (ponerUnaBolita bolita cajas))
+
+--bolitasEnCajas :: Integer -> Integer -> [[[Integer]]]
+--bolitasEnCajas 0 0 = [[]]
+--bolitasEnCajas bolita cajas = ponerUnaBolita bolita (bolitasEnCajas (bolita - 1) cajas)
